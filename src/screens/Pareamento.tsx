@@ -44,8 +44,8 @@ export default function Pareamento({ onParear }: Props) {
           className="campo"
           inputMode="numeric"
           autoComplete="off"
-          maxLength={6}
-          placeholder="000000"
+          maxLength={8}
+          placeholder="00000000"
           value={codigo}
           onChange={e => setCodigo(e.target.value.replace(/\D/g, ''))}
         />
@@ -59,7 +59,7 @@ export default function Pareamento({ onParear }: Props) {
       <div className="rodape">
         <button
           className="botao"
-          disabled={codigo.length < 6 || enviando}
+          disabled={codigo.length < 8 || enviando}
           onClick={confirmar}
         >
           {enviando ? 'Pareando...' : 'Parear'}
