@@ -1,0 +1,52 @@
+name: APK
+
+# Gera o aplicativo a cada envio para o main, e também sob demanda pelo botão
+# "Run workflow" na aba Actions do GitHub.
+#
+# Existe porque a máquina de desenvolvimento não consegue compilar localmente:
+# a política de segurança dela impede a JVM de abrir os sockets internos que o
+# Gradle usa (erro "Unable to establish loopback connection"). Aqui o build
+# roda numa máquina limpa e o APK sai para download.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Compilar o site
+        run: npm run build
+
+      - name: Copiar para o projeto Android
+        run: npx cap sync android
+
+      - name: Gerar o APK
+        working-directory: android
+        run: ./gradlew assembleDebug
+
+      # O APK fica disponível para download na página desta execução,
+      # em "Artifacts", por 30 dias.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: soluu-maquininha-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
