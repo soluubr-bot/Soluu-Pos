@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Soluu Maquininha</string>
+    <string name="title_activity_main">Soluu Maquininha</string>
+    <string name="package_name">br.com.soluu.pos</string>
+    <string name="custom_url_scheme">br.com.soluu.pos</string>
+</resources>

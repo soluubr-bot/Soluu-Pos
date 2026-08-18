@@ -3,6 +3,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './lib/firebase';
 import { lerPareamento, apagarPareamento, Pareamento as TipoPareamento } from './lib/device';
 import { parear } from './lib/pareamento';
+import { manterTelaAcesa } from './lib/tela';
 import TelaPareamento from './screens/Pareamento';
 import Operacao from './screens/Operacao';
 
@@ -17,6 +18,8 @@ export default function App() {
    * e aqui o Firebase deixa de estar autenticado. Sem esta conferência, o app
    * continuaria mostrando a tela de operação para sempre, sem receber nada.
    */
+  useEffect(() => manterTelaAcesa(), []);
+
   useEffect(() => {
     const parar = onAuthStateChanged(auth, usuario => {
       if (!usuario && lerPareamento()) {

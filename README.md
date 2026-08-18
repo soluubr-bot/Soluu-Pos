@@ -55,6 +55,34 @@ O app é 100% web: dá para desenvolver e testar tudo no navegador, inclusive o
 ciclo completo de cobrança. A maquininha física só é necessária na etapa do
 pagamento real.
 
+## Gerando o aplicativo Android
+
+Precisa do **Android Studio** instalado (ele traz o SDK e aceita as licenças).
+
+```bash
+npm run android
+```
+
+Isso compila o site, copia para dentro do projeto Android e abre o Android
+Studio. De lá, `Run` instala no aparelho conectado por USB.
+
+Para gerar o APK direto, sem abrir o Android Studio:
+
+```bash
+npm run android:apk
+```
+
+O arquivo sai em `android/app/build/outputs/apk/debug/`.
+
+### Escolhas do projeto Android
+
+- **Retrato travado**: maquininha fica presa no suporte; a tela não pode girar
+  no meio de uma cobrança.
+- **Tela sempre acesa** (`src/lib/tela.ts`): sem isso o operador teria que
+  acordar o aparelho antes de cada venda.
+- O número de série real virá do lado nativo, por `window.SoluuPOS.serial`.
+  Enquanto não existe, o app gera um identificador local marcado como `DEV-`.
+
 ## Etapas
 
 1. ~~Esqueleto rodando no navegador~~ ✅
