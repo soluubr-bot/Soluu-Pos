@@ -1,0 +1,167 @@
+/* Tela de maquininha: 6 polegadas, usada em pé, muitas vezes com pressa.
+   Alvos grandes, contraste alto, nada de texto pequeno. */
+
+:root {
+  --ground: #080c12;
+  --surface: #101823;
+  --surface-alt: #16202d;
+  --ink: #e8eff5;
+  --muted: #8698a9;
+  --line: #1f2b3a;
+  --accent: #35e3f5;
+  --accent-ink: #041014;
+  --ok: #34d399;
+  --warn: #f0b429;
+  --danger: #f87171;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+
+.tela {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
+  gap: 16px;
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.marca {
+  font-size: 15px;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.rotulo {
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+.centro {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.valor {
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.descricao { color: var(--muted); font-size: 14px; }
+
+.botao {
+  width: 100%;
+  padding: 20px 16px;
+  border: none;
+  border-radius: 16px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.botao:disabled { opacity: 0.45; cursor: default; }
+
+.botao.secundario {
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--line);
+}
+
+.botao.perigo {
+  background: transparent;
+  color: var(--danger);
+  border: 2px solid var(--danger);
+}
+
+.campo {
+  width: 100%;
+  padding: 18px 16px;
+  border: 2px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 26px;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 0.3em;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+}
+
+.campo:focus { border-color: var(--accent); }
+
+.cartao {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aviso {
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.aviso.atencao { background: rgba(240, 180, 41, 0.12); color: var(--warn); }
+.aviso.erro { background: rgba(248, 113, 113, 0.12); color: var(--danger); }
+
+.rodape {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+button:focus-visible, input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}

@@ -1,0 +1,13 @@
+node_modules/
+dist/
+*.local
+.DS_Store
+
+# Android (gerado pelo Capacitor na etapa 4)
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+android/app/google-services.json
+*.keystore
+*.jks
